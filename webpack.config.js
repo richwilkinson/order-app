@@ -1,11 +1,28 @@
+const path = require('path');
+let mode = "development";
+if (process.env.NODE.ENV === "production") {
+    mode = "production";
+}
 module.exports = {
-    entry: "./src/index.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+  mode: mode,
+
+  module: {
+    rules: [
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+            },
+        },
+    ],
+  },
+  devtool: "source-map",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
     },
-    // module: { rules: [ ... ] }
-    devServer: {
-        index: index.html
-    },
- };
+    compress: true,
+    port: 9000,
+  },
+};

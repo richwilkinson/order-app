@@ -1,3 +1,7 @@
+import { render } from "react-dom"
+import "./styles/index.scss"
+
+render(<h1>Hello World</h1>, document.getElementById("root"))
 const menuItems = {
     Pizza: 3,
     hotdogs: 4,
